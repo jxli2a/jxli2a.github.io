@@ -1,9 +1,49 @@
-"AJP":
-  url: https://aapt.scitation.org/journal/ajp
-  color: "#00369f"
+"Nature":
+  url: https://www.nature.com/
+  # color: "#009f36"
+  color: "#000000"
 
-"PhysRev":
-  url: https://journals.aps.org/
+"Nature Geoscience":
+  url: https://www.nature.com/ngeo/
+  color: "#1b8d4c"
 
-"Vision":
-  color: "#009f36"
+"Nature Comms":
+  url: https://www.nature.com/ncomms/
+  color: "#ec4c2d"
+
+"Science Advances":
+  url: https://www.science.org/journal/sciadv
+  color: "#c31925"
+
+"GRL":
+  url: https://agupubs.onlinelibrary.wiley.com/
+  color: "#004967"
+
+"GJI":
+  url: https://academic.oup.com/gji
+  color: "#55b65f"
+
+"SRL":
+  url: https://www.seismosoc.org/publications/srl/
+  color: "#478e99"
+
+"Geothermics":
+  url: https://www.sciencedirect.com/journal/geothermics
+  color: "#5b741b"
+
+"Fuel":
+  url: https://www.sciencedirect.com/journal/fuel
+  color: "#5b741b"
+
+"Energies":
+  url: https://www.mdpi.com/journal/energies
+  color: "#98755c"
+
+"arxiv":
+  url: https://arxiv.org/
+  color: "#a42c25"
+
+"Conference":
+
+"US Patent":
+  color: "#347ced"
