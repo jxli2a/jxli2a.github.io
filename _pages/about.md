@@ -2,16 +2,16 @@
 layout: about
 title: About
 permalink: /
-subtitle: <a href='#'>Caltech Seismological Laboratory</a>. #Address. Contacts. Motto. Etc.
+subtitle: <a href='#'>University of Houston</a>. #Address. Contacts. Motto. Etc.
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>South Mudd Bld, Room 262</p>
-    <p>1200 E California Blvd</p>
-    <p>Pasadena, CA 91125</p>
+    <p>Science & Research Building 1, Room 125A</p>
+    <p>3507 Cullen Blvd</p>
+    <p>Houston, TX 77004</p>
 
 news: true # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
