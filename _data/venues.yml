@@ -15,6 +15,10 @@
   url: https://www.science.org/journal/sciadv
   color: "#c31925"
 
+"Science":
+  url: https://www.science.org
+  color: "#c31925"
+
 "AGU Advances":
   url: https://agupubs.onlinelibrary.wiley.com/
   color: "#004967"
