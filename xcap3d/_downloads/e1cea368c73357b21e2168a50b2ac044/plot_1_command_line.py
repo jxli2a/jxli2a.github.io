@@ -1,0 +1,81 @@
+"""
+From the command line
+=====================
+
+SCEDC event 38695658, the M4.5 South El Monte earthquake of 19 September 2020.
+``DB`` is the Green's-function database directory, provided by the operator.
+One command does every step::
+
+    xcap3d run 38695658 --gf DB --mt full --refine --report
+
+or one step at a time::
+
+    xcap3d download 38695658        # the event, StationXML and raw waveforms from SCEDC
+    xcap3d process 38695658         # the instrument responses removed, rotated to Z, R, T
+    xcap3d invert 38695658 --gf DB --mt full --refine --report
+
+``--refine`` follows the 5-degree grid search at each depth with a 1-degree
+search near its minima.
+Everything goes to ``./xcap3d-out/38695658/``: ``result.json``, ``report.html``
+and the report's figures, shown below. The run ends with::
+
+    xcap3d-out/38695658/report.html
+    38695658 production: depth 15.5 km  FM 263/43/92  Mw 4.56  VR 67.8
+
+FM is strike/dip/rake in degrees and VR the variance reduction in percent.
+``xcap3d report 38695658`` writes the report again from ``result.json``.
+"""
+
+# %%
+# Stations
+# --------
+# .. image:: /_static/example-map.png
+#    :alt: Station map of event 38695658
+#
+# The stations within 100 km in four groups, counted in the key: used (blue,
+# the area the summed weight of their five components), deselected (filled
+# gray: removed by the QC or the source-margin rule, each reason in the
+# report's station table), not in the database (open circles) and without
+# data (gray crosses). The solution is drawn at the epicenter.
+
+# %%
+# Depth
+# -----
+# .. image:: /_static/example-depth.png
+#    :alt: Misfit against depth for event 38695658
+#
+# The misfit at each trial depth, in percent above the minimum, with the best
+# double couple of each depth along the top. The chosen depth, 15.5 km, is
+# filled and the runner-up hollow; the shaded band holds the depths whose
+# misfit is within 10 % of the best, and the dashed line is the catalog depth.
+
+# %%
+# Waveform fits
+# -------------
+# .. image:: /_static/example-fits.png
+#    :alt: Observed and synthetic waveforms of the nearest stations
+#
+# Observed (gray) and synthetic (blue) velocity of the 16 nearest of the 63
+# stations fitted (56 used); the report's figure has one row per station. Of
+# the 65 stations loaded, RUS (too close to the source) and MUR (the source
+# near the edge of its store) are left out before the fit. The windows are
+# Pnl (Z, R) and surface waves (Z, R, T); gray rows are stations the QC
+# removed. Above each trace is the time shift of the synthetic in seconds,
+# below it the cross-correlation and, where the QC reduced it, the weight.
+
+# %%
+# Full moment tensor
+# ------------------
+# .. image:: /_static/example-lune.png
+#    :alt: Source-type lune of event 38695658
+#    :width: 360px
+#
+# With ``--mt full`` the run also searches the isotropic and CLVD parts at the
+# chosen depth, around the double-couple solution. The lune of Tape and Tape
+# (2012) shows the best variance reduction of each source type, and the star
+# is the solution: ISO 1.3 %, CLVD 0.4 %, DC 98.3 %, close to a double
+# couple. The run prints it as::
+#
+#     full: FM 263/43/92  iso 0.116  clvd 0.064  Mw 4.56  VR 68.2
+#
+# The signs and the percentages are defined on the Conventions page.

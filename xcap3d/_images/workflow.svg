@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 878 468" width="878" height="468" font-family="'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <title>xcap3d workflow</title>
+  <defs>
+    <marker id="a" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 z" fill="#1f2933"/></marker>
+    <symbol id="i-model" viewBox="0 0 24 24"><path d="M2 16l5-6 3.5 3.5L15 7l7 9z M2 19h20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="9.5" y="9.5" width="5" height="5" fill="currentColor"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="8" ry="2.8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 5.5v13c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8v-13M4 12c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M3 5h18v14H3z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v6l5-3z" fill="currentColor"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M7 17a5 5 0 0 1 .5-10 6.5 6.5 0 0 1 12 2.5A4 4 0 0 1 18 17" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v10M8.5 17.5L12 21l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 24 24"><path d="M1 12h4l2-6 3 12 3-15 3 14 2-7 2 4 1-2h3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-stencil" viewBox="0 0 24 24"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M15 15l6 6" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-beach" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 3a9 9 0 0 1 9 9h-9zM12 21a9 9 0 0 1-9-9h9z" fill="currentColor"/></symbol>
+    <symbol id="i-table" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 10h18M3 14.5h18M9 5v14" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M5 2h10l4 4v16H5z M15 2v4h4 M8 11h8 M8 15h8 M8 19h5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-jack" viewBox="0 0 24 24"><circle cx="4.5" cy="12" r="2.6" fill="currentColor"/><circle cx="12" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="19.5" cy="12" r="2.6" fill="currentColor"/><path d="M9 17l6-10" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-lune" viewBox="0 0 24 24"><path d="M12 2c5.5 4.5 5.5 15.5 0 20c-5.5-4.5-5.5-15.5 0-20z M12 2v20 M7.6 12h8.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/></symbol>
+</defs>
+  <style>
+    .bg { fill: #ffffff; }
+    .box { fill: #ffffff; stroke: #1f2933; stroke-width: 1.3; }
+    .data { fill: #eef1f4; stroke: #1f2933; stroke-width: 1.3; }
+    .ln { stroke: #1f2933; stroke-width: 1.3; fill: none; }
+    .zone { font-size: 12px; font-weight: 600; fill: #52606d; }
+    .n { font-size: 13px; font-weight: 600; fill: #1f2933; }
+    .d { font-size: 11px; fill: #52606d; }
+    .c { font-family: 'IBM Plex Mono', 'DejaVu Sans Mono', Menlo, monospace; font-size: 11px; fill: #0b5394; }
+    .ic { color: #1f2933; }
+  </style>
+  <rect class="bg" width="878" height="468"/>
+  <text class="zone" x="20" y="32">Build, per station</text>
+  <g transform="translate(20,46)">
+    <rect class="box" width="150" height="80"/>
+    <use href="#i-model" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">Velocity model</text>
+    <text class="d" x="10" y="46">UCVM · station box</text>
+    <text class="c" x="10" y="66">build model STA</text>
+  </g>
+  <g transform="translate(192,46)">
+    <rect class="box" width="150" height="80"/>
+    <use href="#i-chip" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">SPECFEM3D</text>
+    <text class="d" x="10" y="46">unit forces · GPU</text>
+    <text class="c" x="10" y="66">build sgt STA</text>
+  </g>
+  <g transform="translate(364,46)">
+    <rect class="data" width="150" height="80"/>
+    <use href="#i-db" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">SGT database</text>
+    <text class="d" x="10" y="46">HDF5 · one per station</text>
+    <text class="c" x="10" y="66">db release</text>
+  </g>
+  <g transform="translate(536,46)">
+    <rect class="box" width="150" height="80"/>
+    <use href="#i-play" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">Visualization</text>
+    <text class="d" x="10" y="46">slices · animations</text>
+    <text class="c" x="10" y="66">viz wavefield</text>
+  </g>
+  <path class="ln" d="M170 86.0 H188" marker-end="url(#a)"/>
+  <path class="ln" d="M342 86.0 H360" marker-end="url(#a)"/>
+  <path class="ln" d="M514 86.0 H532" marker-end="url(#a)"/>
+  <text class="zone" x="20" y="168">Invert, per event</text>
+  <path class="ln" d="M20 200 V194 H514 V200"/>
+  <text class="c" x="40" y="188">run EVENT_ID (all three)</text>
+  <g transform="translate(20,214)">
+    <rect class="data" width="150" height="80"/>
+    <use href="#i-down" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">SCEDC data</text>
+    <text class="d" x="10" y="46">FDSN · StationXML</text>
+    <text class="c" x="10" y="66">download EVENT_ID</text>
+  </g>
+  <g transform="translate(192,214)">
+    <rect class="box" width="150" height="80"/>
+    <use href="#i-wave" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">Processing</text>
+    <text class="d" x="10" y="46">response · Z/R/T</text>
+    <text class="c" x="10" y="66">process EVENT_ID</text>
+  </g>
+  <g transform="translate(364,214)">
+    <rect class="box" width="150" height="80"/>
+    <use href="#i-beach" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">Inversion</text>
+    <text class="d" x="10" y="46">depth · Mw · mechanism</text>
+    <text class="c" x="10" y="66">invert EVENT_ID</text>
+  </g>
+  <g transform="translate(536,214)">
+    <rect class="box" width="150" height="80"/>
+    <use href="#i-doc" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">Report</text>
+    <text class="d" x="10" y="46">figures · result.json</text>
+    <text class="c" x="10" y="66">report EVENT_ID</text>
+  </g>
+  <g transform="translate(708,214)">
+    <rect class="box" width="150" height="80"/>
+    <use href="#i-table" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">Catalog</text>
+    <text class="d" x="10" y="46">all events</text>
+    <text class="c" x="10" y="66">catalog DIR</text>
+  </g>
+  <path class="ln" d="M170 254.0 H188" marker-end="url(#a)"/>
+  <path class="ln" d="M342 254.0 H360" marker-end="url(#a)"/>
+  <path class="ln" d="M514 254.0 H532" marker-end="url(#a)"/>
+  <path class="ln" d="M686 254.0 H704" marker-end="url(#a)"/>
+  <path class="ln" d="M439.0 126 V192" stroke-dasharray="5 4"/>
+  <path class="ln" d="M439.0 196 V210" stroke-dasharray="5 4" marker-end="url(#a)"/>
+  <text class="zone" x="20" y="354">Inside invert</text>
+  <path class="ln" d="M439.0 294 V352" stroke-dasharray="5 4"/>
+  <path class="ln" d="M192 358 V352 H858 V358"/>
+  <g transform="translate(192,368)">
+    <rect class="box" width="150" height="80"/>
+    <use href="#i-stencil" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">Green's functions</text>
+    <text class="d" x="10" y="46">SGT stencil · FK</text>
+    <text class="c" x="10" y="66">--gf DB</text>
+  </g>
+  <g transform="translate(364,368)">
+    <rect class="box" width="150" height="80"/>
+    <use href="#i-search" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">Grid search</text>
+    <text class="d" x="10" y="46">5° grid · 1° refine</text>
+    <text class="c" x="10" y="66">--refine</text>
+  </g>
+  <g transform="translate(536,368)">
+    <rect class="box" width="150" height="80"/>
+    <use href="#i-jack" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">Jackknife</text>
+    <text class="d" x="10" y="46">one station left out</text>
+    <text class="c" x="10" y="66">--no-jackknife</text>
+  </g>
+  <g transform="translate(708,368)">
+    <rect class="box" width="150" height="80"/>
+    <use href="#i-lune" class="ic" x="10" y="11" width="18" height="18"/>
+    <text class="n" x="34" y="25">Non-DC part</text>
+    <text class="d" x="10" y="46">ISO · CLVD · lune</text>
+    <text class="c" x="10" y="66">--mt full</text>
+  </g>
+  <path class="ln" d="M342 408.0 H360" marker-end="url(#a)"/>
+  <path class="ln" d="M514 408.0 H532" marker-end="url(#a)"/>
+  <path class="ln" d="M686 408.0 H704" marker-end="url(#a)"/>
+</svg>

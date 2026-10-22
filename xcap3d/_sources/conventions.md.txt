@@ -1,0 +1,135 @@
+# Conventions
+
+The definitions needed to read `result.json` and the report.
+
+## Angles and frame
+
+Moment tensors are given in x = North, y = East, z = Down (NED; Aki and
+Richards 2002, Box 4.4). Strike is measured clockwise from north with the fault
+dipping to the right, dip from the horizontal (0 to 90 deg), and rake in the
+fault plane from the strike direction to the slip of the hanging wall
+(-180 to 180 deg).
+
+## Moment tensor and magnitude
+
+`mt_ned` is $(M_{xx}, M_{xy}, M_{xz}, M_{yy}, M_{yz}, M_{zz})$ in NED,
+normalized to a scalar moment of 1, with
+
+$$
+M_0 = \sqrt{M_{ij} M_{ij} / 2}.
+$$
+
+The tensor in N m is `m0_nm` times `mt_ned`; `m0` is the same moment in units
+of $10^{20}$ dyne cm. The moment magnitude is Kanamori's (1977), with $M_0$ in
+N m:
+
+$$
+M_w = \tfrac{2}{3} \left( \log_{10} M_0 - 9.1 \right).
+$$
+
+In the Global CMT convention (r = Up, $\theta$ = South, $\varphi$ = East):
+$M_{rr} = M_{zz}$, $M_{\theta\theta} = M_{xx}$, $M_{\varphi\varphi} = M_{yy}$,
+$M_{r\theta} = M_{xz}$, $M_{r\varphi} = -M_{yz}$, $M_{\theta\varphi} = -M_{xy}$.
+
+## Isotropic and CLVD parts
+
+With `--mt deviatoric` or `--mt full`, the `non_dc` block of the record gives
+the moment tensor in the parameterization of Zhu and Ben-Zion (2013):
+
+$$
+M_{ij} = \sqrt{2} \, M_0 \left[ \zeta \, \frac{\delta_{ij}}{\sqrt{3}} + \sqrt{1 - \zeta^2} \left( \sqrt{1 - \chi^2} \, D^{\mathrm{DC}}_{ij} + \chi \, D^{\mathrm{CLVD}}_{ij} \right) \right],
+$$
+
+where $D^{\mathrm{DC}}$ and $D^{\mathrm{CLVD}}$ are unit double-couple and CLVD
+tensors sharing the principal axes. `iso` is $\zeta \in [-1, 1]$ ($\zeta = 1$
+an explosion) and `clvd` is $\chi \in [-\tfrac{1}{2}, \tfrac{1}{2}]$;
+`--mt deviatoric` keeps $\zeta = 0$. The signed percentages are
+
+$$
+\mathrm{ISO\%} = 100 \, \operatorname{sgn}(\zeta) \, \zeta^2, \qquad
+\mathrm{CLVD\%} = 100 \, \operatorname{sgn}(\chi) (1 - \zeta^2) \chi^2, \qquad
+\mathrm{DC\%} = 100 - |\mathrm{ISO\%}| - |\mathrm{CLVD\%}|.
+$$
+
+**Lune.** The report plots the solution on the lune of Tape and Tape (2012):
+longitude $\gamma \in [-30^\circ, 30^\circ]$ and latitude $\delta$ (`gamma` and
+`delta` in `non_dc`, in degrees), with
+
+$$
+\zeta = \sin\delta, \qquad \chi = \sin\gamma.
+$$
+
+A double couple is at the center, an explosion at $\delta = 90^\circ$.
+
+**Sign of the CLVD.** $\chi > 0$ means the intermediate eigenvalue is
+positive: $\chi = +\tfrac{1}{2}$ has eigenvalues proportional to (1, 1, -2) and
+$\chi = -\tfrac{1}{2}$ to (2, -1, -1). Catalogs that call (2, -1, -1) a
+positive CLVD have the opposite sign. So does the report's lune, which names
+its edges as Tape and Tape (2012) do: its "+CLVD" is (2, -1, -1), at
+$\gamma = -30^\circ$, $\chi = -\tfrac{1}{2}$.
+
+## Data and fit
+
+**Components.** Z is up, R points along the great circle away from the
+source, and T is R turned 90 deg clockwise seen from above. Data and synthetics
+are ground velocity in cm/s.
+
+**Scalar moment and misfit.** For component $c$, let $d_c$ be the data and
+$s_c$ the synthetic of the mechanism at unit moment, both with the distance
+scaling of the inversion; $o_c$ the component's weight (the station's
+`weights` in the record, set by the QC); and $b_c = 1$ if the component is in
+use (weight above 0), else 0. For every trial mechanism the moment matches the energy of
+the data,
+
+$$
+M_0 = \sqrt{\frac{\sum_c o_c b_c \|d_c\|^2}{\sum_c o_c b_c \|s_c\|^2}},
+$$
+
+and the misfit is
+
+$$
+E = \sum_c o_c \left( \|d_c\|^2 + M_0^2 \|s_c\|^2 - 2 M_0 b_c \max_\tau d_c \cdot s_c(\tau) \right),
+$$
+
+with $\tau$ the time shift of the component. The solution is the mechanism of
+least $E$.
+
+**Variance reduction.** `vr` is, in percent,
+
+$$
+\mathrm{VR} = 100 \left( 1 - E \Big/ \sum_c o_c \|d_c\|^2 \right).
+$$
+
+Scaling every weight by the same factor changes neither $M_0$ nor VR, and a
+component of weight 0 enters neither. `settings.m0_vr` is `"weighted"` for
+these definitions. A record without it has those
+of `cap3D.c`: $b_c$ in place of $o_c b_c$ in $M_0$, and every loaded component
+in the VR denominator, $\sum_c \|d_c\|^2$. With weights 0 or 1 that equal
+$b_c$ the two give the same $M_0$; when every weight is 1 they also give the
+same VR.
+
+**Kagan angle.** The smallest rotation that takes one double couple to another
+(Kagan 1991).
+
+**Jackknife.** Each station is left out in turn. `uncertainty` gives the median
+and 90th percentile of the Kagan angles to the full solution and the depth
+standard error $\sqrt{\tfrac{n-1}{n} \sum_i (z_i - \bar{z})^2}$ over the $n$
+leave-one-out depths.
+
+## References
+
+- Aki, K., and P. G. Richards (2002). *Quantitative Seismology*, 2nd ed.,
+  University Science Books, Sausalito, California.
+- Kagan, Y. Y. (1991). 3-D rotation of double-couple earthquake sources.
+  *Geophysical Journal International*, 106(3), 709-716.
+  [doi:10.1111/j.1365-246X.1991.tb06343.x](https://doi.org/10.1111/j.1365-246X.1991.tb06343.x)
+- Kanamori, H. (1977). The energy release in great earthquakes. *Journal of
+  Geophysical Research*, 82(20), 2981-2987.
+  [doi:10.1029/JB082i020p02981](https://doi.org/10.1029/JB082i020p02981)
+- Tape, W., and C. Tape (2012). A geometric setting for moment tensors.
+  *Geophysical Journal International*, 190(1), 476-498.
+  [doi:10.1111/j.1365-246X.2012.05491.x](https://doi.org/10.1111/j.1365-246X.2012.05491.x)
+- Zhu, L., and Y. Ben-Zion (2013). Parametrization of general seismic potency
+  and moment tensors for source inversion of seismic waveform data.
+  *Geophysical Journal International*, 194(2), 839-843.
+  [doi:10.1093/gji/ggt137](https://doi.org/10.1093/gji/ggt137)

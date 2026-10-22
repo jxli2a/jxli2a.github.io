@@ -1,0 +1,35 @@
+API
+===
+
+The command line is the main interface. These are the functions behind it, for
+scripts.
+
+xcap3d.Result
+-------------
+.. autoclass:: xcap3d.Result
+   :members: from_file, strike, dip, rake, depth, mw, vr, mt_ned
+
+xcap3d.cli
+----------
+.. automodule:: xcap3d.cli
+   :members: run_event, download_event, process_event, invert_event, replay
+
+xcap3d.gf.release
+-----------------
+.. automodule:: xcap3d.gf.release
+   :members: write_release, read_release, station_problems
+
+xcap3d.gf.storeformat
+---------------------
+.. automodule:: xcap3d.gf.storeformat
+   :members: check_store, check_db
+
+xcap3d.report.products
+----------------------
+.. automodule:: xcap3d.report.products
+   :members: write_fits, fits_digest
+
+xcap3d.report.report
+--------------------
+.. automodule:: xcap3d.report.report
+   :members: write_event_report, write_compare
