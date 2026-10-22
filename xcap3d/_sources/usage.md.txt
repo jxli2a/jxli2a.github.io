@@ -1,0 +1,191 @@
+# Using xcap3d
+
+Given an SCEDC event ID, xcap3d returns the moment tensor, the depth and a
+report. This page shows the steps one by one, the files they write, the main
+options, and how to look at many events.
+
+The examples write `DB` for the Green's-function database and `~/xcap3d_out`
+for the output directory, where every event
+gets a folder `<id>/`.
+
+## The Green's-function database
+
+xcap3d does not compute Green's functions during a run; it reads them from a
+database of strain Green's tensor stores, one HDF5 file per station, each from three SPECFEM3D simulations with a unit force at the
+station. By reciprocity they give the seismogram at the station of a source
+anywhere in a box around it. The database is provided by the operator: point `--gf` at its directory. Its
+`release.json` lists the stores; a run checks every store it opens against it
+and names the release in `result.json`.
+
+## One command
+
+```bash
+xcap3d run 38695658 --gf DB --mt full --refine --out ~/xcap3d_out --report
+```
+
+`run` downloads the data, removes the instrument responses, inverts the data (depth scan with a
+grid search over strike, dip and rake at each depth, then the station
+jackknife) and, with `--report`, writes the report. The last line printed is
+the answer:
+
+```text
+38695658 production: depth 15.5 km  FM 263/43/92  Mw 4.56  VR 67.8
+```
+
+FM is strike/dip/rake in degrees, VR the variance reduction in percent.
+
+## Step by step
+
+The same work, one step at a time, e.g. to download many events before
+inverting them, or to invert again with other options without downloading:
+
+```bash
+xcap3d download 38695658 --out ~/xcap3d_out
+xcap3d process 38695658 --out ~/xcap3d_out
+xcap3d invert 38695658 --gf DB --mt full --refine --out ~/xcap3d_out
+xcap3d report 38695658 --out ~/xcap3d_out
+```
+
+| step | what it does | writes in `<id>/` |
+|---|---|---|
+| `download EVENT_ID` | fetches from the SCEDC FDSN service the event (origin, magnitude, phase picks), the station metadata with instrument responses and the raw seismograms of the CI stations within 100 km, 300 s before to 300 s after the origin | `raw/` |
+| `process EVENT_ID` | removes the instrument response, rotates to Z, R, T, low-passes, resamples to 20 samples/s and sets the time windows from the picks | `data-full/` |
+| `invert EVENT_ID --gf DB` | the inversion of `run`, with the same options, on the processed data; refuses when there are none | `result.json`, `fits.h5`; `report.html` with `--report` |
+| `report EVENT_ID` | the report of a finished inversion | `report.html` and its figures |
+
+A step whose output is already there does nothing; move that folder away to
+repeat it: to download an event again, delete `<out>/<id>/raw` (there is no
+`--refresh` option). A download in which no channel returned data writes
+nothing. `run` writes the same files and also skips what is there, so `run`
+after `process` inverts the processed data, and the files are the same as
+those of the three steps.
+
+From Python, `xcap3d.run_event` takes the settings of `run` by name and
+returns the record, an `xcap3d.Result` (a dict that prints the solution); `download_event`, `process_event` and `invert_event` are
+the three steps (API page). The example runs `run_event`.
+
+## Options
+
+`run` and `invert` share these options; `--help` lists the rest.
+
+| option | default | meaning |
+|---|---|---|
+| `--gf DB` | required | the database directory |
+| `--release FILE` | `<DB>/release.json` | the database's release file |
+| `--out DIR` | `XCAP3D_OUT`, else `./xcap3d-out` | where `<id>/` is written (also for `download`, `process`, `report`, `compare`) |
+| `--report` | off | also write `report.html` |
+| `--device` | `auto` | `cpu`, `cuda:N`, or `auto` (a GPU if PyTorch sees one) |
+| `--no-jackknife` | jackknife on | skip the station jackknife (faster); `uncertainty` is then missing |
+| `--catalogs DIR` | `XCAP3D_CATALOGS` | the directory holding the reference catalog files ([below](#reference-catalogs)) |
+| `--mt` | `dc` | `dc`: double couple only; `dev` (`deviatoric`): ISO fixed at 0, CLVD free; `full`: ISO and CLVD free. `deviatoric` and `full` also give the non-DC moment tensor at the chosen depth, around the DC solution (`non_dc` in the record, a lune in the report) |
+| `--refine` | off | after the double-couple search at each depth, also search 1-deg nodes within 8 deg (Kagan) of up to 3 coarse minima and keep the lowest misfit; `settings.refine` in the record |
+| `--grid-step DEG` | `5` | the strike/dip/rake spacing, more than 0 and at most 30 deg. On event 41249496 (64 stations, 18 depths, GPU) a 2-deg grid took 2.5 times as long and 33 against 12.7 GiB of GPU memory; 1 deg would not fit a 46 GiB GPU. `--refine` gives 1 deg near the minimum for about 1.5 times the time |
+| `--refine-step DEG` | `1` | the spacing of the `--refine` nodes, less than half the refine radius (1.6 times the grid step); only with `--refine` |
+
+A CPU run of the example event needed 15 GB of memory: plan 16 GB per CPU run. Use a GPU
+(`--device cuda:N`) for production runs.
+
+## Outputs
+
+| file in `<id>/` | what it is |
+|---|---|
+| `raw/` | the raw download: `event.xml` (QuakeML), `stations.xml` (StationXML), `waveforms.mseed`, `request.json` (the request) |
+| `data-full/` | the processed data: per station `<NET>.<STA>.{r,t,z}.npy` (cm/s), and `meta.json` with the event, the station coordinates, picks and time windows, and every station dropped with the reason; `processing.json` (from `process`) says how they were processed |
+| `result.json` | the record of the inversion (below) |
+| `fits.h5` | observed and synthetic waveforms in every time window of every station at every scanned depth |
+| `report.html`, `*.png` | the report and its figures ([below](#visualizing)) |
+
+A `data-full/` made by an older xcap3d is refused: move it away and run `xcap3d process` again.
+
+The main keys of `result.json`:
+
+| key | contents |
+|---|---|
+| `solution` | depth, strike, dip, rake, Mw, M0 (N m), VR, stations and components used, the tensor `mt_ned` |
+| `depth_scan` | the best mechanism, Mw, misfit and VR at each depth |
+| `depth_confidence` | the depths within 10 % of the best misfit, and whether the best depth is at the edge of the scan |
+| `uncertainty` | the station jackknife: each station left out in turn; the median and 90th percentile Kagan angle and the standard error of the depth |
+| `verdict` | a one-line assessment, e.g. "well constrained", with caveats |
+| `stations` | per station: distance, azimuth, component weights, cross-correlation, time shifts, `vr` (its variance reduction, 1 - its misfit / its data energy over its used components, a fraction), and why it was left out |
+| `references` | published mechanisms of the event in the reference catalogs; `references_missing` names the catalogs without it |
+| `database`, `inputs` | the release used, and the sha256 of every input file |
+| `run_spec`, `settings`, `environment` | every setting as run, the passbands and windows, the software versions and the device |
+| `status` | `complete`; `product_error` when the inversion ran but the record could not be built (exit status 2); `no_solution` when there is no solution (exit status 3); `error` when the run crashed |
+
+Known issue, the QC weights: the Huber weights act on the absolute component
+residual, so a large, well-fit component can be down-weighted while a small,
+poorly correlated one keeps full weight. The 2021 code also removed components
+with CC below 40-65 %. A combined rule is being studied.
+
+A run without a solution (no station or depth left, a store that differs from
+the release, an incomplete download) still writes `result.json`, with
+`status` `no_solution` and the `reason`, and prints the reason. A run that
+crashes writes `status` `error` with the exception's type (`error`) and
+message (`reason`), then stops with the exception, so no earlier record is
+left standing. `report` refuses both kinds of record and `catalog` lists those
+events in one line.
+
+## Reference catalogs
+
+The record and the report compare the solution with published solutions of
+the same event, read from these files in the directory `--catalogs DIR`
+(default `XCAP3D_CATALOGS`). None ships with xcap3d; a missing file is not an
+error, `references_missing` names it. A row that cannot be read is skipped,
+with one warning per file.
+
+| file in DIR | source |
+|---|---|
+| `published_catalog.csv` | the published 2021 catalog: gCAP3D, Wang & Zhan (2020) |
+| `scedc_cmt.csv` | SCEDC moment tensors (SCSN) |
+| `HASH_FM_M3.cata` | SCEDC HASH first-motion mechanisms |
+
+## Many events: the catalog
+
+Loop over the events in the shell, then put them on one page:
+
+```bash
+for id in 38695658 39322287 40735352; do
+    xcap3d run $id --gf DB --out ~/xcap3d_out --report
+done
+xcap3d catalog ~/xcap3d_out
+```
+
+`catalog` writes `catalog.html` and `catalog_map.png` in that
+folder: one row per event that has a report, linked to it.
+
+## Visualizing
+
+`report.html` shows the solution, the verdict and the published mechanisms of
+the event; the misfit and mechanism against depth (`depth.png`); the station
+map (`map.png`); observed and synthetic waveforms of every
+station at the chosen depth (`fits.png`, nearest first, each station with its
+VR and its rank); the station table, best VR first; and the
+settings, the database release and the software versions. `xcap3d report
+EVENT_ID` writes it again from `result.json` and `fits.h5` without inverting
+again.
+
+The station map shows four groups, with their counts in the key: used
+(filled, the area by the summed weight of the station's components),
+deselected by the QC or the source margin (filled gray, the reason in the
+station table), not in the database (open circles) and without data (gray
+crosses).
+
+The maps draw the Natural Earth 10m land, coastline and populated places.
+The first report without them downloads them (9 MB, 60 MB on disk) into
+cartopy's data folder, once; offline, or when the download fails, it says `no map`
+and leaves the maps out.
+
+`xcap3d viz wavefield` draws a store's wavefield, a frame strip (PNG) and an
+animation (mp4, or GIF without imageio-ffmpeg; install the `wavefield`
+extra) of the strain at the nodes of one slice for one force:
+
+```bash
+xcap3d viz wavefield STA --gf DB --force fz --slice depth=15 --out wavefield
+```
+
+## Other commands
+
+`compare`, `replay`, `db release`, `db check`, `build model` and `build sgt`
+serve the operator, who builds and checks the database and compares
+databases; each has `--help`. Adding stations means building them and running
+`xcap3d db release DB`, which writes the next version and keeps the previous one.

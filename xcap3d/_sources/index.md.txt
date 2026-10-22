@@ -1,0 +1,19 @@
+```{include} ../README.md
+:relative-images:
+```
+
+```{toctree}
+:hidden:
+:caption: Manual
+
+usage
+conventions
+```
+
+```{toctree}
+:hidden:
+:caption: Reference
+
+api
+auto_examples/index
+```

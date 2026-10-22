@@ -1,0 +1,1311 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>xcap3d.cli - xcap3d</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --content-width: 60em;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">xcap3d</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">xcap3d</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Manual</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Using xcap3d</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../conventions.html">Conventions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../auto_examples/index.html">Examples</a><input aria-label="Toggle navigation of Examples" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_1_command_line.html">From the command line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_2_python.html">From Python</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <h1>Source code for xcap3d.cli</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;The xcap3d command line: run, download, process, invert, replay, report, compare, catalog and build.</span>
+
+<span class="sd">The output directory is `--out`, else `XCAP3D_OUT`, else `./xcap3d-out`. The reference catalog files are read from</span>
+<span class="sd">the directory `--catalogs`, else `XCAP3D_CATALOGS`; without either, the record lists every reference as not given. The raw download goes</span>
+<span class="sd">to `&lt;out&gt;/&lt;id&gt;/raw/` and the waveforms with the full instrument response removed to `&lt;out&gt;/&lt;id&gt;/data-full/`. With</span>
+<span class="sd">`--label`, result.json, report.html and the figures go to `&lt;out&gt;/&lt;id&gt;/models/&lt;label&gt;/`, so several Green&#39;s-function</span>
+<span class="sd">sets can be compared on one download; without it they go to `&lt;out&gt;/&lt;id&gt;/`.</span>
+
+<span class="sd">Defaults: the station jackknife on.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">platform</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">metadata</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">kernel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.core.kernel</span><span class="w"> </span><span class="kn">import</span> <span class="n">pick_device</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.core.orient</span><span class="w"> </span><span class="kn">import</span> <span class="n">REFINE_STEP_DEG</span><span class="p">,</span> <span class="n">refine_radius</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.core.qc</span><span class="w"> </span><span class="kn">import</span> <span class="n">QCParams</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.fetch</span><span class="w"> </span><span class="kn">import</span> <span class="n">STORE_VERSION</span><span class="p">,</span> <span class="n">download_raw</span><span class="p">,</span> <span class="n">process_raw</span><span class="p">,</span> <span class="n">read_meta</span><span class="p">,</span> <span class="n">station_coordinates</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.gf.release</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ReleaseError</span><span class="p">,</span>
+    <span class="n">archived_release</span><span class="p">,</span>
+    <span class="n">read_release</span><span class="p">,</span>
+    <span class="n">sha256</span><span class="p">,</span>
+    <span class="n">station_problems</span><span class="p">,</span>
+    <span class="n">write_release</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.gf.store</span><span class="w"> </span><span class="kn">import</span> <span class="n">store_xazim</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">EventConfig</span><span class="p">,</span>
+    <span class="n">IncompleteDownload</span><span class="p">,</span>
+    <span class="n">NoSolution</span><span class="p">,</span>
+    <span class="n">elapsed</span><span class="p">,</span>
+    <span class="n">run_from_download</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.report</span><span class="w"> </span><span class="kn">import</span> <span class="n">record</span><span class="p">,</span> <span class="n">report</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.report.products</span><span class="w"> </span><span class="kn">import</span> <span class="n">fits_digest</span><span class="p">,</span> <span class="n">write_fits</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.report.record</span><span class="w"> </span><span class="kn">import</span> <span class="n">differences</span><span class="p">,</span> <span class="n">without_volatile</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.result</span><span class="w"> </span><span class="kn">import</span> <span class="n">Result</span><span class="p">,</span> <span class="n">solution_line</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">out_dir</span><span class="p">(</span><span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The output directory: `out` (--out), else XCAP3D_OUT, else ./xcap3d-out; the variable is read at each call.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="n">out</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;XCAP3D_OUT&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;xcap3d-out&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">catalogs_dir</span><span class="p">(</span><span class="n">catalogs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The directory of the reference catalog files (record.ref_files names them): `catalogs` (--catalogs), else</span>
+<span class="sd">    XCAP3D_CATALOGS, else None; the variable is read at each call.&quot;&quot;&quot;</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">catalogs</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;XCAP3D_CATALOGS&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="k">else</span> <span class="kc">None</span>
+
+
+<span class="n">DATA</span> <span class="o">=</span> <span class="s2">&quot;data-full&quot;</span>  <span class="c1"># &lt;out&gt;/&lt;id&gt;/&lt;this&gt;: the waveforms an inversion reads, made from the raw download &lt;id&gt;/raw</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">has_store</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;True if `data` holds processed waveforms; SystemExit if it holds files but no meta.json.&quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">data</span> <span class="o">/</span> <span class="s2">&quot;meta.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()):</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">: no meta.json: move it away and run xcap3d process again&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">read_store</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The meta of the processed waveforms in `data`; SystemExit if an xcap3d of another store version made them.&quot;&quot;&quot;</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">read_meta</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;store_version&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="n">STORE_VERSION</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">event_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2"> is a store of version </span><span class="si">{</span><span class="n">m</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;store_version&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">, this xcap3d reads version &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">STORE_VERSION</span><span class="si">}</span><span class="s2">: move it away and run xcap3d process </span><span class="si">{</span><span class="n">event_id</span><span class="si">}</span><span class="s2"> again&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">m</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">write_json</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">rec</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write to a temporary file and rename it, so that `path` always holds a whole record.&quot;&quot;&quot;</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.tmp&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">missing_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">write_failed</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">environment</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">run_spec</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write the record of a run that ended without a solution (&#39;no_solution&#39;) or crashed (&#39;error&#39;) and return it.</span>
+
+<span class="sd">    The page and figures of an earlier run are removed with its record, so that nothing older stands for this run.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dest</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">report</span><span class="o">.</span><span class="n">clear_report</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span>  <span class="c1"># the old page and figures would pair with this record</span>
+    <span class="n">failed</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">event_id</span><span class="o">=</span><span class="n">event_id</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+        <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="p">,</span>
+        <span class="n">error</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="n">reason</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+        <span class="n">environment</span><span class="o">=</span><span class="n">environment</span><span class="p">,</span>
+        <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+        <span class="n">run_spec</span><span class="o">=</span><span class="n">run_spec</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">write_json</span><span class="p">(</span><span class="n">dest</span> <span class="o">/</span> <span class="s2">&quot;result.json&quot;</span><span class="p">,</span> <span class="n">failed</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">failed</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">environment</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Versions, device and threads of a run, and one sha256 over every .py file of the package.</span>
+
+<span class="sd">    The source digest stands in for git describe, which an installed build does not have.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span>
+        <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*.py&quot;</span><span class="p">)))</span>
+    <span class="p">)</span>
+    <span class="n">versions</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;xcap3d&quot;</span><span class="p">,</span> <span class="s2">&quot;numpy&quot;</span><span class="p">,</span> <span class="s2">&quot;scipy&quot;</span><span class="p">,</span> <span class="s2">&quot;obspy&quot;</span><span class="p">,</span> <span class="s2">&quot;h5py&quot;</span><span class="p">,</span> <span class="s2">&quot;torch&quot;</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">versions</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">version</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">metadata</span><span class="o">.</span><span class="n">PackageNotFoundError</span><span class="p">:</span>
+            <span class="n">versions</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">threads</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;OMP_NUM_THREADS&quot;</span><span class="p">,</span> <span class="s2">&quot;MKL_NUM_THREADS&quot;</span><span class="p">,</span> <span class="s2">&quot;OPENBLAS_NUM_THREADS&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">python</span><span class="o">=</span><span class="n">platform</span><span class="o">.</span><span class="n">python_version</span><span class="p">(),</span>
+        <span class="n">packages</span><span class="o">=</span><span class="n">versions</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="n">device</span> <span class="ow">or</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span>
+        <span class="n">threads</span><span class="o">=</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">},</span>
+        <span class="n">source_sha256</span><span class="o">=</span><span class="n">source</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">input_digests</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The sha256 of every file of a download, and one digest of the whole set.&quot;&quot;&quot;</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">root</span><span class="p">)):</span> <span class="n">sha256</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">))</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">is_file</span><span class="p">()}</span>
+    <span class="n">whole</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">digest</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">digest</span> <span class="ow">in</span> <span class="n">files</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">root</span><span class="p">),</span> <span class="n">digest</span><span class="o">=</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">whole</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="run_event">
+<a class="viewcode-back" href="../../api.html#xcap3d.cli.run_event">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_event</span><span class="p">(</span>
+    <span class="n">event_id</span><span class="p">,</span>
+    <span class="n">gf</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">jackknife</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">edge_margin_km</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">near_field_cells</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">write_report</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="n">release</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">catalogs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">mt</span><span class="o">=</span><span class="s2">&quot;dc&quot;</span><span class="p">,</span>
+    <span class="n">refine</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">grid_step</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+    <span class="n">refine_step</span><span class="o">=</span><span class="n">REFINE_STEP_DEG</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run `xcap3d run` from a script: download if needed, invert, write result.json and return the record.</span>
+
+<span class="sd">    A production run reads `&lt;out&gt;/&lt;id&gt;/data-full`, made from the raw download `&lt;out&gt;/&lt;id&gt;/raw` when missing. A</span>
+<span class="sd">    production run that ends without a solution (no station or depth left,</span>
+<span class="sd">    a store that differs from the release, an incomplete download) writes a record with status &#39;no_solution&#39; and the</span>
+<span class="sd">    reason. A run that crashes writes a record with status &#39;error&#39;, the exception&#39;s type and message, and raises it.</span>
+<span class="sd">    The record&#39;s run_spec names `mt`, `refine`, `grid_step` and `refine_step` only when they are not the</span>
+<span class="sd">    defaults.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        event_id: SCEDC event id.</span>
+<span class="sd">        gf: the database, a directory of HDF5 stores.</span>
+<span class="sd">        jackknife: None or True for the station jackknife (uncertainty.fast_jackknife), False for none.</span>
+<span class="sd">        edge_margin_km: drop a station whose box edge is closer than this to the epicenter [km].</span>
+<span class="sd">        near_field_cells: drop a station-centered box&#39;s station when the epicenter is within this many lattice</span>
+<span class="sd">            cells of the station node.</span>
+<span class="sd">        write_report: also write report.html next to result.json.</span>
+<span class="sd">        label: name of the Green&#39;s-function set; the products go to `&lt;out&gt;/&lt;id&gt;/models/&lt;label&gt;/`.</span>
+<span class="sd">        out: output directory; default `XCAP3D_OUT`, else ./xcap3d-out.</span>
+<span class="sd">        device: &quot;auto&quot; (a GPU if torch sees one), &quot;cpu&quot; (or None) or &quot;cuda:N&quot;, chosen once for every search of the</span>
+<span class="sd">            run.</span>
+<span class="sd">        release: the database&#39;s release file; default `&lt;gf&gt;/release.json`. A production run needs one.</span>
+<span class="sd">        catalogs: directory of the reference catalog files; default `XCAP3D_CATALOGS`.</span>
+<span class="sd">        mt: &#39;dc&#39; (default), &#39;deviatoric&#39; (&#39;dev&#39;) or &#39;full&#39;. The last two add the non-DC search at the chosen depth</span>
+<span class="sd">            around the DC solution (orient.search_nondc) as the record&#39;s `non_dc` block; the DC solution is unchanged.</span>
+<span class="sd">        refine: after each double-couple search, search 1-deg nodes within Kagan 8 deg of up to 3 coarse minima</span>
+<span class="sd">            (orient.refine_search) and keep the lowest misfit.</span>
+<span class="sd">        grid_step: spacing of the strike/dip/rake grid [deg], more than 0 and at most 30.</span>
+<span class="sd">        refine_step: spacing of the fine nodes of `refine` [deg], less than half its radius (1.6 `grid_step`); only</span>
+<span class="sd">            with `refine`.</span>
+<span class="sd">        verbose: print each stage as it starts and ends (download, processing, Green&#39;s functions, QC, depth scan,</span>
+<span class="sd">            moment tensor, jackknife); False prints only the solution line.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The result record as written to result.json, a `Result`.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        SystemExit: an option has an invalid value, or the inversion cannot start.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">gf</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">mt</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">gf</span><span class="p">),</span> <span class="n">device</span> <span class="ow">or</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">MT_SHORT</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">mt</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">MT_MODES</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--mt </span><span class="si">{</span><span class="n">mt</span><span class="si">!r}</span><span class="s2">: one of </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">MT_MODES</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">refine</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">or</span> <span class="n">refine</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;refine </span><span class="si">{</span><span class="n">refine</span><span class="si">!r}</span><span class="s2">: True or False&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="mf">0.0</span> <span class="o">&lt;</span> <span class="n">grid_step</span> <span class="o">&lt;=</span> <span class="mf">30.0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--grid-step </span><span class="si">{</span><span class="n">grid_step</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2">: more than 0 and at most 30 deg&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">refine_step</span> <span class="o">!=</span> <span class="n">REFINE_STEP_DEG</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">refine</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+            <span class="s2">&quot;--refine-step sets the spacing of --refine: add --refine or drop --refine-step&quot;</span>
+        <span class="p">)</span>
+    <span class="n">radius</span> <span class="o">=</span> <span class="n">refine_radius</span><span class="p">(</span><span class="n">grid_step</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">refine</span> <span class="ow">and</span> <span class="ow">not</span> <span class="mf">0.0</span> <span class="o">&lt;</span> <span class="n">refine_step</span> <span class="o">&lt;</span> <span class="n">radius</span> <span class="o">/</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;--refine-step </span><span class="si">{</span><span class="n">refine_step</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2">: more than 0 and less than half the refine radius, </span><span class="si">{</span><span class="n">radius</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2"> deg&quot;</span>
+        <span class="p">)</span>
+    <span class="n">catalogs</span> <span class="o">=</span> <span class="n">catalogs_dir</span><span class="p">(</span><span class="n">catalogs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">label</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">report</span><span class="o">.</span><span class="n">LABEL_RE</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--label </span><span class="si">{</span><span class="n">label</span><span class="si">!r}</span><span class="s2">: letters, digits and . _ + - only&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">device</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">device</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;cuda:&quot;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--device </span><span class="si">{</span><span class="n">device</span><span class="si">!r}</span><span class="s2">: auto, cpu or cuda:N&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">device</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;cuda:&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">kernel</span><span class="o">.</span><span class="n">torch</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--device </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">: needs PyTorch (pip install &#39;xcap3d[gpu]&#39;)&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">jackknife</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">jackknife</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">or</span> <span class="n">jackknife</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;jackknife </span><span class="si">{</span><span class="n">jackknife</span><span class="si">!r}</span><span class="s2">: None, True or False&quot;</span><span class="p">)</span>
+    <span class="n">used</span> <span class="o">=</span> <span class="n">pick_device</span><span class="p">()</span> <span class="k">if</span> <span class="n">device</span> <span class="o">==</span> <span class="s2">&quot;auto&quot;</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">device</span> <span class="o">==</span> <span class="s2">&quot;cpu&quot;</span> <span class="k">else</span> <span class="n">device</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">environment</span><span class="p">(</span><span class="n">used</span><span class="p">)</span>
+    <span class="n">spec</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">event_id</span><span class="o">=</span><span class="n">event_id</span><span class="p">,</span>
+        <span class="n">gf</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">resolve</span><span class="p">()),</span>
+        <span class="n">bands</span><span class="o">=</span><span class="s2">&quot;production&quot;</span><span class="p">,</span>
+        <span class="n">shear</span><span class="o">=</span><span class="s2">&quot;corrected&quot;</span><span class="p">,</span>
+        <span class="n">qc</span><span class="o">=</span><span class="s2">&quot;huber&quot;</span><span class="p">,</span>
+        <span class="n">jackknife</span><span class="o">=</span><span class="n">jackknife</span><span class="p">,</span>
+        <span class="n">edge_margin_km</span><span class="o">=</span><span class="n">edge_margin_km</span><span class="p">,</span>
+        <span class="n">near_field_cells</span><span class="o">=</span><span class="n">near_field_cells</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+        <span class="n">out</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">out_dir</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()),</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">mt</span> <span class="o">!=</span> <span class="s2">&quot;dc&quot;</span><span class="p">:</span>  <span class="c1"># a record without it ran double couples only</span>
+        <span class="n">spec</span><span class="p">[</span><span class="s2">&quot;mt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mt</span>
+    <span class="k">if</span> <span class="n">refine</span><span class="p">:</span>  <span class="c1"># a record without it searched the coarse nodes only</span>
+        <span class="n">spec</span><span class="p">[</span><span class="s2">&quot;refine&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">grid_step</span> <span class="o">!=</span> <span class="mf">5.0</span><span class="p">:</span>  <span class="c1"># a record without it searched the 5-deg grid</span>
+        <span class="n">spec</span><span class="p">[</span><span class="s2">&quot;grid_step&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_step</span>
+    <span class="k">if</span> <span class="n">refine_step</span> <span class="o">!=</span> <span class="n">REFINE_STEP_DEG</span><span class="p">:</span>  <span class="c1"># a record without it refined on the 1-deg lattice</span>
+        <span class="n">spec</span><span class="p">[</span><span class="s2">&quot;refine_step&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refine_step</span>
+    <span class="n">home</span> <span class="o">=</span> <span class="n">out_dir</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">/</span> <span class="n">event_id</span>
+    <span class="n">home</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">dest</span> <span class="o">=</span> <span class="n">home</span> <span class="o">/</span> <span class="s2">&quot;models&quot;</span> <span class="o">/</span> <span class="n">label</span> <span class="k">if</span> <span class="n">label</span> <span class="k">else</span> <span class="n">home</span>  <span class="c1"># the record, page and figures of this run</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">rel</span> <span class="o">=</span> <span class="n">read_release</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span> <span class="n">release</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">ReleaseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">event_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">,</span> <span class="n">raw</span> <span class="o">=</span> <span class="n">home</span> <span class="o">/</span> <span class="n">DATA</span><span class="p">,</span> <span class="n">home</span> <span class="o">/</span> <span class="s2">&quot;raw&quot;</span>
+    <span class="n">inputs</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="p">{}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">has_store</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">raw</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="n">download</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">raw</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+            <span class="n">process</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">read_store</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">store</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;root&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;meta&quot;</span><span class="p">]}</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">input_digests</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">processing</span><span class="o">=</span><span class="n">m</span><span class="p">[</span><span class="s2">&quot;processing&quot;</span><span class="p">])</span>
+        <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;references&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="n">sha256</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">ref_files</span><span class="p">(</span><span class="n">catalogs</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="n">spec</span><span class="p">[</span><span class="s2">&quot;release&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rel</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">]</span>
+        <span class="n">jk</span> <span class="o">=</span> <span class="n">jackknife</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">jackknife</span><span class="o">=</span><span class="n">jk</span><span class="p">)</span>  <span class="c1"># as run, not &quot;default&quot;</span>
+        <span class="c1"># a run killed before it writes (out of memory, a signal) must not leave the previous record standing</span>
+        <span class="p">(</span><span class="n">dest</span> <span class="o">/</span> <span class="s2">&quot;result.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">missing_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">report</span><span class="o">.</span><span class="n">clear_report</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span>  <span class="c1"># the old page and figures would pair with the new numbers</span>
+        <span class="n">sol</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">sols</span><span class="p">,</span> <span class="n">depths</span> <span class="o">=</span> <span class="n">run_from_download</span><span class="p">(</span>
+            <span class="n">gf</span><span class="p">,</span>
+            <span class="n">store</span><span class="p">,</span>
+            <span class="n">EventConfig</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s2">&quot;evlo&quot;</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;evla&quot;</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;evdp&quot;</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">]),</span>
+            <span class="n">qc</span><span class="o">=</span><span class="n">QCParams</span><span class="p">(),</span>
+            <span class="n">info</span><span class="o">=</span><span class="n">info</span><span class="p">,</span>
+            <span class="n">edge_margin_km</span><span class="o">=</span><span class="n">edge_margin_km</span><span class="p">,</span>
+            <span class="n">near_field_cells</span><span class="o">=</span><span class="n">near_field_cells</span><span class="p">,</span>
+            <span class="n">jackknife</span><span class="o">=</span><span class="n">jk</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span><span class="n">used</span><span class="p">,</span>
+            <span class="n">release</span><span class="o">=</span><span class="n">rel</span><span class="p">,</span>
+            <span class="n">mt</span><span class="o">=</span><span class="n">mt</span><span class="p">,</span>
+            <span class="n">refine</span><span class="o">=</span><span class="n">refine</span><span class="p">,</span>
+            <span class="n">grid_step</span><span class="o">=</span><span class="n">grid_step</span><span class="p">,</span>
+            <span class="n">refine_step</span><span class="o">=</span><span class="n">refine_step</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="n">NoSolution</span><span class="p">,</span> <span class="n">ReleaseError</span><span class="p">,</span> <span class="n">IncompleteDownload</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">event_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">failed</span> <span class="o">=</span> <span class="n">write_failed</span><span class="p">(</span>
+            <span class="n">dest</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="s2">&quot;no_solution&quot;</span><span class="p">,</span> <span class="n">event_id</span><span class="p">,</span> <span class="s2">&quot;production&quot;</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">),</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">spec</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">Result</span><span class="p">(</span><span class="n">failed</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># a crash: the record says so, then the exception goes on</span>
+        <span class="n">write_failed</span><span class="p">(</span>
+            <span class="n">dest</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="n">event_id</span><span class="p">,</span> <span class="s2">&quot;production&quot;</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">),</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">spec</span>
+        <span class="p">)</span>
+        <span class="k">raise</span>
+    <span class="n">dest</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># &lt;id&gt;/models/&lt;label&gt; for a labeled run</span>
+    <span class="n">extra</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">environment</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">],</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">run_spec</span><span class="o">=</span><span class="n">spec</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">label</span><span class="p">:</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">greens</span><span class="o">=</span><span class="n">record</span><span class="o">.</span><span class="n">greens_info</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span> <span class="n">label</span><span class="p">),</span> <span class="o">**</span><span class="n">extra</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">rec</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">production_record</span><span class="p">(</span>
+            <span class="n">sol</span><span class="p">,</span>
+            <span class="n">depth</span><span class="p">,</span>
+            <span class="n">sols</span><span class="p">,</span>
+            <span class="n">depths</span><span class="p">,</span>
+            <span class="n">m</span><span class="p">,</span>
+            <span class="n">event_id</span><span class="p">,</span>
+            <span class="n">data</span><span class="p">,</span>
+            <span class="n">catalogs</span><span class="p">,</span>
+            <span class="n">store_xazim</span><span class="p">(</span><span class="n">gf</span><span class="p">),</span>
+            <span class="n">qc_info</span><span class="o">=</span><span class="n">info</span><span class="p">,</span>
+            <span class="n">coords</span><span class="o">=</span><span class="n">station_coordinates</span><span class="p">(</span><span class="n">raw</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">nd</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;non_dc&quot;</span><span class="p">:</span> <span class="n">info</span><span class="p">[</span><span class="s2">&quot;non_dc&quot;</span><span class="p">]}</span> <span class="k">if</span> <span class="s2">&quot;non_dc&quot;</span> <span class="ow">in</span> <span class="n">info</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="o">**</span><span class="n">nd</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;complete&quot;</span><span class="p">)</span>
+        <span class="n">write_fits</span><span class="p">(</span>
+            <span class="n">dest</span> <span class="o">/</span> <span class="s2">&quot;fits.h5&quot;</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="s2">&quot;fits&quot;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">][</span><span class="s2">&quot;dt&quot;</span><span class="p">]</span>
+        <span class="p">)</span>  <span class="c1"># before the record, which names its digest</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;products&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;fits.h5&quot;</span><span class="p">:</span> <span class="n">fits_digest</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;fits&quot;</span><span class="p">])}</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># keep the flat keys, say what failed</span>
+        <span class="n">flat</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">flat_result</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="s2">&quot;production&quot;</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">sol</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">flat</span><span class="p">,</span> <span class="o">**</span><span class="n">extra</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;product_error&quot;</span><span class="p">,</span> <span class="n">report_error</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="n">write_json</span><span class="p">(</span><span class="n">dest</span> <span class="o">/</span> <span class="s2">&quot;result.json&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">write_report</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="n">report</span><span class="o">.</span><span class="n">write_event_report</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;schema&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">record</span><span class="o">.</span><span class="n">SCHEMA</span>
+            <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">event_id</span><span class="si">}</span><span class="s2">: no report (</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;report_error&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">solution_line</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">flat_result</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="s2">&quot;production&quot;</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">sol</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">Result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+
+
+<span class="n">REPLAY_KEYS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;jackknife&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;edge_margin_km&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;near_field_cells&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;release&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;refine&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;grid_step&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;refine_step&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">SPEC_SKIP</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;out&quot;</span><span class="p">,</span> <span class="s2">&quot;device&quot;</span><span class="p">)</span>
+<span class="n">MT_MODES</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;dc&quot;</span><span class="p">,</span> <span class="s2">&quot;deviatoric&quot;</span><span class="p">,</span> <span class="s2">&quot;full&quot;</span><span class="p">)</span>
+<span class="c1"># the short form of --mt; records, replay and everything downstream keep the long one</span>
+<span class="n">MT_SHORT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dev&quot;</span><span class="p">:</span> <span class="s2">&quot;deviatoric&quot;</span><span class="p">}</span>
+
+
+<div class="viewcode-block" id="replay">
+<a class="viewcode-back" href="../../api.html#xcap3d.cli.replay">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">replay</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">catalogs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a recorded production run again, offline, and return how the new record differs from the recorded one.</span>
+
+<span class="sd">    The inputs and release file must match the recorded sha256. The records are compared without paths, clock, file</span>
+<span class="sd">    times and environment (printed as notes); the fits are compared by digest. The settings come from this code, so a</span>
+<span class="sd">    default that changed since the run shows as a difference.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        result: path of the recorded result.json; the record must be complete.</span>
+<span class="sd">        out: output directory for the replay.</span>
+<span class="sd">        data: the download, if it has moved since the run; default the recorded path.</span>
+<span class="sd">        device: default the device the run used.</span>
+<span class="sd">        catalogs: directory of the reference catalog files; default `XCAP3D_CATALOGS`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The differences, empty when the records agree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">rec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">&quot;complete&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">: status </span><span class="si">{</span><span class="n">rec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span><span class="si">!r}</span><span class="s2">; only a complete record can be replayed&quot;</span>
+        <span class="p">)</span>
+    <span class="n">spec</span><span class="p">,</span> <span class="n">inputs</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="s2">&quot;run_spec&quot;</span><span class="p">],</span> <span class="n">rec</span><span class="p">[</span><span class="s2">&quot;inputs&quot;</span><span class="p">]</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">data</span> <span class="ow">or</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;root&quot;</span><span class="p">])</span>
+    <span class="n">want</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">][</span><span class="s2">&quot;file_sha256&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">read_release</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">&quot;gf&quot;</span><span class="p">],</span> <span class="n">spec</span><span class="p">[</span><span class="s2">&quot;release&quot;</span><span class="p">])[</span><span class="s2">&quot;file_sha256&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">want</span><span class="p">:</span>
+        <span class="n">old</span> <span class="o">=</span> <span class="n">archived_release</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">&quot;gf&quot;</span><span class="p">],</span> <span class="n">want</span><span class="p">)</span>  <span class="c1"># the database has a newer release since the run</span>
+        <span class="k">if</span> <span class="n">old</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">spec</span><span class="p">[</span><span class="s1">&#39;release&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: the release file differs from the one </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2"> used&quot;</span>
+            <span class="p">)</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span> <span class="n">release</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">old</span><span class="p">))</span>
+    <span class="n">here</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">/</span> <span class="n">spec</span><span class="p">[</span><span class="s2">&quot;event_id&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">here</span> <span class="o">/</span> <span class="s2">&quot;models&quot;</span> <span class="o">/</span> <span class="n">spec</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">spec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">here</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span> <span class="o">==</span> <span class="n">Path</span><span class="p">(</span>
+        <span class="n">result</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;--out </span><span class="si">{</span><span class="n">out</span><span class="si">}</span><span class="s2">: the run&#39;s own output directory; the replay would replace the record it compares&quot;</span>
+        <span class="p">)</span>
+    <span class="n">here</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">here</span> <span class="o">/</span> <span class="n">DATA</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">symlink_to</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">resolve</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">input_digests</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="s2">&quot;digest&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;digest&quot;</span><span class="p">]:</span>  <span class="c1"># the files the replay will read</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">: the input files differ from those of </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">catalogs</span> <span class="o">=</span> <span class="n">catalogs_dir</span><span class="p">(</span><span class="n">catalogs</span><span class="p">)</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">sha256</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">ref_files</span><span class="p">(</span><span class="n">catalogs</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">exists</span><span class="p">()}</span>
+    <span class="k">if</span> <span class="n">now</span> <span class="o">!=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;references&quot;</span><span class="p">,</span> <span class="p">{}):</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;note: the reference catalogs under </span><span class="si">{</span><span class="n">catalogs</span><span class="si">}</span><span class="s2"> differ from the run&#39;s; references may differ&quot;</span>
+        <span class="p">)</span>
+    <span class="n">new</span> <span class="o">=</span> <span class="n">run_event</span><span class="p">(</span>
+        <span class="n">spec</span><span class="p">[</span><span class="s2">&quot;event_id&quot;</span><span class="p">],</span>
+        <span class="n">spec</span><span class="p">[</span><span class="s2">&quot;gf&quot;</span><span class="p">],</span>
+        <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="n">device</span> <span class="ow">or</span> <span class="n">rec</span><span class="p">[</span><span class="s2">&quot;environment&quot;</span><span class="p">][</span><span class="s2">&quot;device&quot;</span><span class="p">],</span>
+        <span class="n">catalogs</span><span class="o">=</span><span class="n">catalogs</span><span class="p">,</span>
+        <span class="o">**</span><span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="n">spec</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">REPLAY_KEYS</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">spec</span>
+        <span class="p">},</span>  <span class="c1"># a key the record lacks: the default it ran with</span>
+    <span class="p">)</span>
+    <span class="n">new</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">new</span><span class="p">))</span>  <span class="c1"># as written to result.json: numpy floats become floats</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">rec</span><span class="p">[</span><span class="s2">&quot;environment&quot;</span><span class="p">])</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">new</span><span class="p">[</span><span class="s2">&quot;environment&quot;</span><span class="p">])):</span>
+        <span class="k">if</span> <span class="n">rec</span><span class="p">[</span><span class="s2">&quot;environment&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">!=</span> <span class="n">new</span><span class="p">[</span><span class="s2">&quot;environment&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;note: environment </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;environment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">new</span><span class="p">[</span><span class="s1">&#39;environment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">comparable</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>  <span class="c1"># what the run computed: no paths, clock, file times or environment</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">without_volatile</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;environment&quot;</span><span class="p">)</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;data_files_written&quot;</span><span class="p">,</span> <span class="s2">&quot;download_time&quot;</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">r</span><span class="p">,</span>
+            <span class="n">provenance</span><span class="o">=</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;provenance&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">times</span><span class="p">},</span>
+            <span class="c1"># no paths or device</span>
+            <span class="n">run_spec</span><span class="o">=</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;run_spec&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">SPEC_SKIP</span><span class="p">},</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;inputs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;references&quot;</span><span class="p">)},</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="s2">&quot;greens&quot;</span> <span class="ow">in</span> <span class="n">r</span>
+        <span class="p">):</span>  <span class="c1"># paths as given: the replay is handed the recorded, resolved GF directory</span>
+            <span class="n">out</span><span class="p">[</span><span class="s2">&quot;greens&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;greens&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;dir&quot;</span><span class="p">,</span> <span class="s2">&quot;store&quot;</span><span class="p">)}</span>
+        <span class="k">return</span> <span class="n">out</span>
+
+    <span class="k">return</span> <span class="n">differences</span><span class="p">(</span><span class="n">comparable</span><span class="p">(</span><span class="n">rec</span><span class="p">),</span> <span class="n">comparable</span><span class="p">(</span><span class="n">new</span><span class="p">))</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">download</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">raw</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;`fetch.download_raw` into `raw`, saying when it starts and what it got when it ends.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">event_id</span><span class="si">}</span><span class="s2">: download from SCEDC (CI, within 100 km) ...&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">inv</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">download_raw</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">raw</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">stations</span><span class="p">)</span> <span class="k">for</span> <span class="n">net</span> <span class="ow">in</span> <span class="n">inv</span><span class="p">)</span>
+        <span class="n">mb</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">Path</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="o">.</span><span class="n">iterdir</span><span class="p">())</span> <span class="o">/</span> <span class="mf">1e6</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> stations, </span><span class="si">{</span><span class="n">mb</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> MB (</span><span class="si">{</span><span class="n">elapsed</span><span class="p">(</span><span class="n">t0</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;`fetch.process_raw` from `raw` into `data`, saying when it starts and what it kept when it ends.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  processing: instrument response, rotation to Z/R/T ...&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">process_raw</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">kept</span><span class="p">,</span> <span class="n">lost</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;meta&quot;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;dropped&quot;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">kept</span><span class="si">}</span><span class="s2"> stations kept, </span><span class="si">{</span><span class="n">lost</span><span class="si">}</span><span class="s2"> dropped (</span><span class="si">{</span><span class="n">elapsed</span><span class="p">(</span><span class="n">t0</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+
+
+<div class="viewcode-block" id="download_event">
+<a class="viewcode-back" href="../../api.html#xcap3d.cli.download_event">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">download_event</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Download an event (QuakeML, StationXML and raw seismograms) into `&lt;out&gt;/&lt;id&gt;/raw`.</span>
+
+<span class="sd">    Does nothing if that folder exists (`fetch.download_raw`).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        event_id: SCEDC event id.</span>
+<span class="sd">        out: output directory; default `XCAP3D_OUT`, else ./xcap3d-out.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The raw folder.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="n">out_dir</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">/</span> <span class="n">event_id</span> <span class="o">/</span> <span class="s2">&quot;raw&quot;</span>
+    <span class="k">if</span> <span class="n">raw</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">raw</span><span class="si">}</span><span class="s2">: already downloaded&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">raw</span>
+    <span class="n">download</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">raw</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">raw</span></div>
+
+
+
+<div class="viewcode-block" id="process_event">
+<a class="viewcode-back" href="../../api.html#xcap3d.cli.process_event">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_event</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove the full instrument response from `&lt;out&gt;/&lt;id&gt;/raw` into `&lt;out&gt;/&lt;id&gt;/data-full`, the folder `run` reads.</span>
+
+<span class="sd">    Does nothing if that folder exists (`fetch.process_raw`), and stops if an xcap3d of another store version made it.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        event_id: SCEDC event id.</span>
+<span class="sd">        out: output directory; default `XCAP3D_OUT`, else ./xcap3d-out.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The data-full folder.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">home</span> <span class="o">=</span> <span class="n">out_dir</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">/</span> <span class="n">event_id</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">home</span> <span class="o">/</span> <span class="n">DATA</span>
+    <span class="k">if</span> <span class="n">has_store</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="n">read_store</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">: already processed&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">home</span> <span class="o">/</span> <span class="s2">&quot;raw&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">event_id</span><span class="si">}</span><span class="s2">: no download in </span><span class="si">{</span><span class="n">home</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="s1">&#39;raw&#39;</span><span class="si">}</span><span class="s2">; run xcap3d download </span><span class="si">{</span><span class="n">event_id</span><span class="si">}</span><span class="s2"> first&quot;</span>
+        <span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">process</span><span class="p">(</span><span class="n">home</span> <span class="o">/</span> <span class="s2">&quot;raw&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">FileExistsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+
+<div class="viewcode-block" id="invert_event">
+<a class="viewcode-back" href="../../api.html#xcap3d.cli.invert_event">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">invert_event</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">gf</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run `run_event` on waveforms already processed, never downloading.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        event_id: SCEDC event id.</span>
+<span class="sd">        gf: as in `run_event`.</span>
+<span class="sd">        **settings: the other keyword arguments of `run_event`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The result record.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        SystemExit: `&lt;out&gt;/&lt;id&gt;/data-full` holds no processed waveforms.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">home</span> <span class="o">=</span> <span class="n">out_dir</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;out&quot;</span><span class="p">))</span> <span class="o">/</span> <span class="n">event_id</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_store</span><span class="p">(</span><span class="n">home</span> <span class="o">/</span> <span class="n">DATA</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">event_id</span><span class="si">}</span><span class="s2">: no processed waveforms in </span><span class="si">{</span><span class="n">home</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DATA</span><span class="si">}</span><span class="s2">; run xcap3d download and xcap3d &quot;</span>
+            <span class="s2">&quot;process first, or xcap3d run&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">run_event</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">gf</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># what --grid-step costs, for its help</span>
+<span class="n">COST</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;measured on 41249496 (64 stations, 18 depths, GPU), a 2-deg grid took 2.5x the time and 33 vs &quot;</span>
+    <span class="s2">&quot;12.7 GiB of GPU memory; 1 deg would not fit a 46 GiB GPU; --refine gives 1 deg near the minimum for about 1.5x &quot;</span>
+    <span class="s2">&quot;the time&quot;</span>
+<span class="p">)</span>
+<span class="n">OUT_HELP</span> <span class="o">=</span> <span class="s2">&quot;output directory (default XCAP3D_OUT, else ./xcap3d-out)&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_options</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The arguments of `xcap3d run`, which `xcap3d invert` shares.&quot;&quot;&quot;</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;event_id&quot;</span><span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--gf&quot;</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the database, a directory of HDF5 stores&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--mt&quot;</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;dc&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;deviatoric&quot;</span><span class="p">,</span> <span class="s2">&quot;full&quot;</span><span class="p">),</span>
+        <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;{dc,dev,full}&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;dc&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;dc: double couple only (default); dev (deviatoric): ISO fixed at 0, CLVD free; full: ISO and CLVD free. &quot;</span>
+        <span class="s2">&quot;deviatoric and full also give the non-DC moment tensor at the chosen depth, around the DC solution, &quot;</span>
+        <span class="s2">&quot;in the record&#39;s non_dc block&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--refine&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;after each double-couple search, also search 1-deg nodes within Kagan 8 deg of up to 3 coarse minima &quot;</span>
+        <span class="s2">&quot;(within 2</span><span class="si">%%</span><span class="s2"> of the lowest misfit) and keep the lowest misfit&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--grid-step&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+        <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;DEG&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;spacing of the strike/dip/rake grid, more than 0 and at most 30 deg (default 5). &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Cost: </span><span class="si">{</span><span class="n">COST</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--refine-step&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">REFINE_STEP_DEG</span><span class="p">,</span>
+        <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;DEG&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;spacing of the --refine nodes (default 1), less than half the refine radius, which is 1.6 times the grid &quot;</span>
+        <span class="s2">&quot;step (8 deg at 5); only with --refine&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--jackknife&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">BooleanOptionalAction</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;default on: leave each QC input station out, re-run the QC, the inversion at &quot;</span>
+        <span class="s2">&quot;the chosen depth and the depth choice; median/p90 Kagan and the depth SE go to result.json &quot;</span>
+        <span class="s2">&quot;&#39;uncertainty&#39;; every grid search from per-component arrays computed once per depth&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--edge-margin-km&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;exclude a station whose box edge is closer than this to the epicenter (default 10)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--near-field-cells&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;exclude a station-centered box&#39;s station when the epicenter is within this many &quot;</span>
+        <span class="s2">&quot;lattice cells (2 km) of the station node (default 1)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--report&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;also write report.html next to result.json&quot;</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--label&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;name of this Green&#39;s-function set: write under &lt;id&gt;/models/&lt;label&gt;/&quot;</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--out&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;DIR&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">OUT_HELP</span><span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--release&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the database&#39;s release file (default &lt;gf&gt;/release.json)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--device&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;auto (a GPU if torch sees one), cpu, or cuda:N, for every search of the run&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--catalogs&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span>
+        <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;DIR&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;directory holding the reference catalog files the record compares with (default XCAP3D_CATALOGS; &quot;</span>
+        <span class="s2">&quot;docs/usage.md names the files)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">argv</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">argv</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">prog</span><span class="o">=</span><span class="s2">&quot;xcap3d&quot;</span><span class="p">)</span>
+    <span class="n">sub</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span><span class="n">dest</span><span class="o">=</span><span class="s2">&quot;cmd&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;run&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;moment tensor and depth for one SCEDC event&quot;</span><span class="p">)</span>
+    <span class="n">run_options</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="n">dl</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;download&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the event, StationXML and raw seismograms from SCEDC into &lt;out&gt;/&lt;event_id&gt;/raw&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">dl</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;event_id&quot;</span><span class="p">)</span>
+    <span class="n">dl</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--out&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;DIR&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">OUT_HELP</span><span class="p">)</span>
+    <span class="n">pr</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;process&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the raw download -&gt; the waveforms an inversion reads, the full instrument response removed, in &quot;</span>
+        <span class="s2">&quot;&lt;out&gt;/&lt;event_id&gt;/data-full&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">pr</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;event_id&quot;</span><span class="p">)</span>
+    <span class="n">pr</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--out&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;DIR&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">OUT_HELP</span><span class="p">)</span>
+    <span class="n">iv</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;invert&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the inversion of run on waveforms already processed; the options of run, never a download&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">run_options</span><span class="p">(</span><span class="n">iv</span><span class="p">)</span>
+    <span class="n">rp</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;report&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;report.html from an existing run&#39;s result.json&quot;</span><span class="p">)</span>
+    <span class="n">rp</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;event_id&quot;</span><span class="p">)</span>
+    <span class="n">rp</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--out&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span>
+        <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;DIR&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the output directory holding &lt;event_id&gt;/result.json (default XCAP3D_OUT, else ./xcap3d-out)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">rp</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--label&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the model run under &lt;id&gt;/models/&lt;label&gt;/&quot;</span><span class="p">)</span>
+    <span class="n">cp</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;compare&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;compare.html: every &lt;id&gt;/models/&lt;label&gt;/ of one event in one page&quot;</span>
+    <span class="p">)</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;event_id&quot;</span><span class="p">)</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--out&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;DIR&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">OUT_HELP</span><span class="p">)</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--labels&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;models and their order (default: all, alphabetical)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--reference&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;reference model (default: the first)&quot;</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;catalog&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;aggregate the results of many inversions: catalog.html over every reported run DIR/&lt;id&gt;/result.json &quot;</span>
+        <span class="s2">&quot;(a labeled run, under &lt;id&gt;/models/&lt;label&gt;/, is not listed; the input event list is not a catalog)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;out&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;DIR&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the output directory of the runs (--out of run)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">rpl</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;replay&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;run a recorded run again, offline, and compare the records&quot;</span>
+    <span class="p">)</span>
+    <span class="n">rpl</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;result&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the result.json of the run&quot;</span><span class="p">)</span>
+    <span class="n">rpl</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--out&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;DIR&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;output directory for the replay&quot;</span>
+    <span class="p">)</span>
+    <span class="n">rpl</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--data&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the download, if it has moved since the run&quot;</span><span class="p">)</span>
+    <span class="n">rpl</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--device&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;default: the device the run used&quot;</span><span class="p">)</span>
+    <span class="n">rpl</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--catalogs&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span>
+        <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;DIR&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;directory holding the reference catalog files (default XCAP3D_CATALOGS)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;db&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;a Green&#39;s-function database: freeze it (release) or check it (check)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">dbs</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span><span class="n">dest</span><span class="o">=</span><span class="s2">&quot;dbcmd&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">dbs</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;release&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;freeze a database: write release.json with the per-file sha256, the filter families and the provenance &quot;</span>
+        <span class="s2">&quot;of every station store; inputs: the database directory (and --acceptance records); writes only the &quot;</span>
+        <span class="s2">&quot;release file, never a store; fails when a store breaks the store contract (as db check) or the stores disagree on &quot;</span>
+        <span class="s2">&quot;an attribute a release shares (engine, pulse, lattice, Q)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;db&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">)</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--out&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;where to write it (default &lt;db&gt;/release.json, the previous one kept as release-v&lt;N&gt;.json)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--name&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;release name (default: the directory name)&quot;</span><span class="p">)</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;default: 1, or the version of &lt;db&gt;/release.json plus 1&quot;</span>
+    <span class="p">)</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--no-hash&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;sizes and fingerprints only, no whole-file sha256&quot;</span>
+    <span class="p">)</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--workers&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;files hashed at once&quot;</span><span class="p">)</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--acceptance&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;folder of the stations&#39; rollout_&lt;STA&gt;.json records&quot;</span>
+    <span class="p">)</span>
+    <span class="n">ck</span> <span class="o">=</span> <span class="n">dbs</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;check&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;is the database intact and conforming: every store against the store contract (xcap3d.gf.storeformat) &quot;</span>
+        <span class="s2">&quot;and the files against release.json (sizes and fingerprints; --full re-hashes every file); inputs: the &quot;</span>
+        <span class="s2">&quot;database directory and its release file; writes nothing (--json goes outside the database); fails when a &quot;</span>
+        <span class="s2">&quot;file changed since the release or a store breaks the contract&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ck</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;db&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">)</span>
+    <span class="n">ck</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--release&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;default &lt;db&gt;/release.json&quot;</span><span class="p">)</span>
+    <span class="n">ck</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--no-release&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the database has no release file: check the store contract only&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ck</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--full&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;also the whole-file sha256 (slow)&quot;</span><span class="p">)</span>
+    <span class="n">ck</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--no-data&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;attributes only: do not read one column per force&quot;</span>
+    <span class="p">)</span>
+    <span class="n">ck</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--workers&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;stores checked at once (processes)&quot;</span><span class="p">)</span>
+    <span class="n">ck</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--json&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;write the problems to this file (outside the database)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;build&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;build one station&#39;s Green&#39;s-function store with SPECFEM (xcap3d.build): the velocity model, then the &quot;</span>
+        <span class="s2">&quot;simulations, conversion and acceptance&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">bs</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span><span class="n">dest</span><span class="o">=</span><span class="s2">&quot;buildcmd&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">bm</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;model&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the station box&#39;s velocity model: UCVM through genmod_parallel.py, the pad pass, the checks -&gt; &quot;</span>
+        <span class="s2">&quot;model_report.json&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">bg</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;sgt&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;mesh, databases, the three forces, conversion and acceptance -&gt; an inversion-ready store; steps &quot;</span>
+        <span class="s2">&quot;already done are skipped&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="p">(</span><span class="n">bm</span><span class="p">,</span> <span class="n">bg</span><span class="p">):</span>
+        <span class="n">q</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;station&quot;</span><span class="p">)</span>
+        <span class="n">q</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--site&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the site file: data root, SPECFEM, UCVM (default XCAP3D_SITE; template &quot;</span>
+            <span class="s2">&quot;xcap3d/build/site.example.toml)&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">q</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--config&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;station-box configuration (default xcap3d/build/stationbox.json)&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">bm</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--allow-partial&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;build a box with &lt; min_usable_frac usable lattice&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">bg</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--gpus&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;use only these GPUs, e.g. 2,3,7 (default: any free GPU)&quot;</span><span class="p">)</span>
+    <span class="n">bg</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--gpus-per-force&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;GPUs per force (default 2)&quot;</span><span class="p">)</span>
+    <span class="n">bg</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--keep-raw&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;keep the raw solver output and databases after conversion&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">bg</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--convert-only&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;redo conversion and acceptance from the kept raw solver output; never starts the solver&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">vz</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;viz&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;pictures of a store&quot;</span><span class="p">)</span>
+    <span class="n">vzs</span> <span class="o">=</span> <span class="n">vz</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span><span class="n">dest</span><span class="o">=</span><span class="s2">&quot;vizcmd&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">wf</span> <span class="o">=</span> <span class="n">vzs</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;wavefield&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;a frame strip (PNG) and an animation (mp4 with imageio-ffmpeg, else GIF) of the strain at the nodes of &quot;</span>
+        <span class="s2">&quot;a store, one slice, one force, filtered causally; by reciprocity a frame at time t is, at every node, &quot;</span>
+        <span class="s2">&quot;the sample at t of that node&#39;s Green&#39;s function&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;store&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;a station store (.h5), or a station name with --gf&quot;</span><span class="p">)</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--gf&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;database directory, to find a station by name&quot;</span><span class="p">)</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--force&quot;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;fx&quot;</span><span class="p">,</span> <span class="s2">&quot;fy&quot;</span><span class="p">,</span> <span class="s2">&quot;fz&quot;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;fz&quot;</span><span class="p">)</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--quantity&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;vol&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;vol (xx + yy + zz) or a component: xx yy zz xy xz yz (default vol)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--slice&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;depth=15&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;depth=KM (horizontal), x=KM (section at KM east of the station, along y) or diag (section along &quot;</span>
+        <span class="s2">&quot;ix = iy) (default depth=15)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--band&quot;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;raw&quot;</span><span class="p">,</span> <span class="s2">&quot;pnl&quot;</span><span class="p">,</span> <span class="s2">&quot;surface&quot;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;raw&quot;</span><span class="p">)</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--mag&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">4.5</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;magnitude of the trapezoid and the band corners&quot;</span>
+    <span class="p">)</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--compare&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;a second store on the same lattice: panels A, B and A - B&quot;</span><span class="p">)</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--out&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;wavefield&quot;</span><span class="p">))</span>
+    <span class="n">wf</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--frames&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;frames of the animation (default 60)&quot;</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;mt&quot;</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">mt</span> <span class="o">=</span> <span class="n">MT_SHORT</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">mt</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">mt</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">cmd</span> <span class="o">==</span> <span class="s2">&quot;download&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">download_event</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">event_id</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">cmd</span> <span class="o">==</span> <span class="s2">&quot;process&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">process_event</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">event_id</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">cmd</span> <span class="o">==</span> <span class="s2">&quot;build&quot;</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.build</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+
+        <span class="n">over</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">allow_partial</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s2">&quot;allow_partial&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">buildcmd</span> <span class="o">==</span> <span class="s2">&quot;sgt&quot;</span><span class="p">:</span>
+            <span class="n">over</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">keep_raw_after_store</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">keep_raw</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">,</span> <span class="n">gpus_per_force</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">gpus_per_force</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">gpus</span><span class="p">:</span>
+                <span class="n">over</span><span class="p">[</span><span class="s2">&quot;gpus_allowed&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">gpus</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)]</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">set_site</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">site</span><span class="p">)</span>
+        <span class="n">box</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">station</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">load_config</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">config</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">CONFIG</span><span class="p">,</span> <span class="o">**</span><span class="n">over</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">buildcmd</span> <span class="o">==</span> <span class="s2">&quot;model&quot;</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">.build.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">model</span>
+
+            <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">.build.specfem</span><span class="w"> </span><span class="kn">import</span> <span class="n">sgt</span>
+
+            <span class="n">out</span> <span class="o">=</span> <span class="n">sgt</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">convert_only</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">)[:</span><span class="mi">3000</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">out</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">cmd</span> <span class="o">==</span> <span class="s2">&quot;viz&quot;</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.report.wavefield</span><span class="w"> </span><span class="kn">import</span> <span class="n">wavefield</span>
+
+        <span class="n">kind</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">slice</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;depth&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;diag&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;diag&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--slice </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">slice</span><span class="si">}</span><span class="s2">: use depth=KM, x=KM or diag&quot;</span><span class="p">)</span>
+        <span class="n">paths</span> <span class="o">=</span> <span class="n">wavefield</span><span class="p">(</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">store</span><span class="p">,</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">gf</span><span class="p">,</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">force</span><span class="p">,</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">quantity</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">if</span> <span class="n">value</span> <span class="k">else</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">band</span><span class="p">,</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">mag</span><span class="p">,</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">compare</span><span class="p">,</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="p">,</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">frames</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">paths</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">paths</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">cmd</span> <span class="o">==</span> <span class="s2">&quot;replay&quot;</span><span class="p">:</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">replay</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">result</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">catalogs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;identical&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">diff</span> <span class="k">else</span> <span class="s2">&quot;differs:</span><span class="se">\n</span><span class="s2">  &quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">diff</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">diff</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">diff</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">cmd</span> <span class="o">==</span> <span class="s2">&quot;db&quot;</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">dbcmd</span> <span class="o">==</span> <span class="s2">&quot;release&quot;</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">write_release</span><span class="p">(</span>
+                <span class="n">a</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">version</span><span class="p">,</span> <span class="ow">not</span> <span class="n">a</span><span class="o">.</span><span class="n">no_hash</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">workers</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">acceptance</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">ReleaseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;db release: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">path</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">cmd</span> <span class="o">==</span> <span class="s2">&quot;db&quot;</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.gf.storeformat</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_db</span>
+
+        <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">json</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">is_relative_to</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">resolve</span><span class="p">()):</span>
+            <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;--json </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">json</span><span class="si">}</span><span class="s2">: not inside the database, which the check never writes to&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">no_release</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">release</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="s2">&quot;--no-release and --release exclude each other&quot;</span><span class="p">)</span>
+        <span class="n">rel</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">a</span><span class="o">.</span><span class="n">no_release</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">rel</span> <span class="o">=</span> <span class="n">read_release</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">release</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">ReleaseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2"> (--no-release checks the store contract only)&quot;</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">check_db</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="ow">not</span> <span class="n">a</span><span class="o">.</span><span class="n">no_data</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">workers</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;stores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">: &quot;</span> <span class="o">+</span> <span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="n">failed</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;stores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">b</span><span class="p">]</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;stores&quot;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">db</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">failed</span><span class="p">)</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> stores meet the store contract&quot;</span><span class="p">)</span>
+        <span class="n">changed</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;stamps_before&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;stamps_after&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">changed</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">db</span><span class="si">}</span><span class="s2">: files changed while the check ran; its results do not hold&quot;</span><span class="p">)</span>
+        <span class="n">bad</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">rel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">bad</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="p">:</span> <span class="n">b</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">rel</span><span class="p">[</span><span class="s2">&quot;stations&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">:=</span> <span class="n">station_problems</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">rel</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">full</span><span class="p">))}</span>
+            <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bad</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">: &quot;</span> <span class="o">+</span> <span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rel</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rel</span><span class="p">[</span><span class="s1">&#39;stations&#39;</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">bad</span><span class="p">)</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rel</span><span class="p">[</span><span class="s1">&#39;stations&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> stations match&quot;</span>
+            <span class="p">)</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">release</span><span class="o">=</span><span class="n">rel</span> <span class="ow">and</span> <span class="n">rel</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">release_problems</span><span class="o">=</span><span class="n">bad</span><span class="p">,</span> <span class="n">files_changed</span><span class="o">=</span><span class="n">changed</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">json</span><span class="p">:</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">failed</span> <span class="ow">or</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="n">bad</span> <span class="ow">or</span> <span class="n">changed</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">report</span><span class="o">.</span><span class="n">LABEL_RE</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">label</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--label </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">label</span><span class="si">!r}</span><span class="s2">: letters, digits and . _ + - only&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">cmd</span> <span class="o">==</span> <span class="s2">&quot;report&quot;</span><span class="p">:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">out_dir</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="p">)</span> <span class="o">/</span> <span class="n">a</span><span class="o">.</span><span class="n">event_id</span> <span class="o">/</span> <span class="p">(</span><span class="s2">&quot;models/&quot;</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">label</span> <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">label</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">out</span> <span class="o">/</span> <span class="s2">&quot;result.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">event_id</span><span class="si">}</span><span class="s2">: no result.json in </span><span class="si">{</span><span class="n">out</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">rec</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">((</span><span class="n">out</span> <span class="o">/</span> <span class="s2">&quot;result.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">rec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;no_solution&quot;</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">):</span>
+            <span class="n">what</span> <span class="o">=</span> <span class="s2">&quot;no solution&quot;</span> <span class="k">if</span> <span class="n">rec</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;no_solution&quot;</span> <span class="k">else</span> <span class="s2">&quot;the run failed&quot;</span>
+            <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">event_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">what</span><span class="si">}</span><span class="s2">, so no report (</span><span class="si">{</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;reason&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">page</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">write_event_report</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># a record without its report part (product_error)</span>
+            <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">page</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">cmd</span> <span class="o">==</span> <span class="s2">&quot;compare&quot;</span><span class="p">:</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">write_compare</span><span class="p">(</span><span class="n">out_dir</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="p">)</span> <span class="o">/</span> <span class="n">a</span><span class="o">.</span><span class="n">event_id</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">reference</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">page</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">cmd</span> <span class="o">==</span> <span class="s2">&quot;catalog&quot;</span><span class="p">:</span>
+        <span class="n">rows</span><span class="p">,</span> <span class="n">skipped</span><span class="p">,</span> <span class="n">failed</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*/result.json&quot;</span><span class="p">)):</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">rec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;schema&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">record</span><span class="o">.</span><span class="n">SCHEMA</span> <span class="ow">and</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;report.html&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">report</span><span class="o">.</span><span class="n">catalog_row</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">rec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;no_solution&quot;</span><span class="p">:</span>
+                <span class="n">failed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">rec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span>
+                <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">skipped</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">write_catalog</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="si">}</span><span class="s2"> events&quot;</span>
+            <span class="o">+</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot; (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">skipped</span><span class="p">)</span><span class="si">}</span><span class="s2"> runs without a report skipped)&quot;</span> <span class="k">if</span> <span class="n">skipped</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="o">+</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;; no solution: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">failed</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">failed</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="o">+</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;; error: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">errors</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">page</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">jackknife</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">jackknife</span><span class="p">,</span>
+        <span class="n">edge_margin_km</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">edge_margin_km</span><span class="p">,</span>
+        <span class="n">near_field_cells</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">near_field_cells</span><span class="p">,</span>
+        <span class="n">write_report</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">report</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+        <span class="n">out</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">out</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+        <span class="n">release</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">release</span><span class="p">,</span>
+        <span class="n">catalogs</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">catalogs</span><span class="p">,</span>
+        <span class="n">mt</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">mt</span><span class="p">,</span>
+        <span class="n">refine</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">refine</span><span class="p">,</span>
+        <span class="n">grid_step</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">grid_step</span><span class="p">,</span>
+        <span class="n">refine_step</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">refine_step</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">cmd</span> <span class="o">==</span> <span class="s2">&quot;invert&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">invert_event</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">event_id</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">gf</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">run_event</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">event_id</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">gf</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">entry</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Console script entry point; sets the exit status from the record.</span>
+
+<span class="sd">    The generated `sys.exit(main())` would print the returned dict and exit 1, so this returns a status instead: 2 when</span>
+<span class="sd">    the inversion ran but its record could not be built, 3 when there is no solution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">main</span><span class="p">()</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;product_error&quot;</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;no_solution&quot;</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
+    </body>
+</html>
