@@ -177,7 +177,7 @@ kramdown:
       start_line: 1
 
 # Includes & excludes
-include: ["_pages", "_static", "_images", "_sources", "_modules", "_downloads"] # the xcap3d/ manual (Sphinx)
+include: ["_pages", ".nojekyll", "_static", "_images", "_sources", "_modules", "_downloads"] # the xcap3d/ manual (Sphinx)
 exclude:
   - bin/
   - CONTRIBUTING.md
