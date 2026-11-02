@@ -20,7 +20,7 @@ Moment tensor and depth of a Southern California earthquake from its SCEDC event
 seismograms, fits them in the manner of the CAP method with Green's functions from 3-D SPECFEM3D simulations in the
 SCEC community velocity model, scans depth and mechanism, and writes the result and an HTML report.
 
-Python · [Manual](/xcap3d/) · code available on request
+Python · [Manual](https://jxli2a.github.io/xcap3d/) · code available on request
 
 ### DAS Array Atlas
 
