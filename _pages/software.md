@@ -12,7 +12,7 @@ Reading and basic processing of distributed acoustic sensing (DAS) data. Readers
 (ASN OptoDAS, OptaSense QuantX, AP Sensing, Silixa iDAS), a file catalog, a numpy data container and fast band-pass
 filtering, with optional ambient-noise cross-correlation and PhaseNet-DAS phase picking.
 
-Python · [Code on GitHub](https://github.com/jxli2a/dasio)
+Python · [Manual](https://jxli2a.github.io/dasio/) · [Code on GitHub](https://github.com/jxli2a/dasio)
 
 ### xcap3d
 

@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Welcome our new postdoc Dr. Tianfan Yan to the team—looking forward to great science ahead! 
+Welcome our new postdoc Dr. Tianfan Yan to the team—looking forward to great science ahead!
